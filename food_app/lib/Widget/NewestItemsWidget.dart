@@ -2,7 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class NewestItemsWidget extends StatelessWidget{
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int indexCategory = 0;
+  double opacity = 0.0;
+
   @override
   Widget build (BuildContext context){
     return SingleChildScrollView(
@@ -329,48 +339,52 @@ class NewestItemsWidget extends StatelessWidget{
                     ),
                 ),
                 Container(
-                  width: 150,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        "Hot Nasi Birani",
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        "Kami menyediakan makanan lezat terbaik",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-
-                      RatingBar.builder(
-                        initialRating: 4,
-                        minRating: 2,
-                        direction: Axis.horizontal,
-                        itemCount: 5,
-                        itemSize: 15,
-                        itemPadding: EdgeInsets.symmetric(horizontal: 5),
-                        itemBuilder: (context, _) => Icon(Icons.star,
-                        color: Colors.red,
-                        ),
-                        onRatingUpdate: (index) {},
-                        ),
+                  width: 140,
+                  child: AnimatedOpacity(
+                    duration: const Duration(seconds: 2),
+                    opacity: opacity,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
                         Text(
-                          "\$10",
+                          "Hot Nasi Birani",
                           style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.red,
+                            fontSize: 22,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                      
-                    ],
+                        Text(
+                          "Kami menyediakan makanan lezat terbaik",
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                  
+                        RatingBar.builder(
+                          initialRating: 4,
+                          minRating: 2,
+                          direction: Axis.horizontal,
+                          itemCount: 5,
+                          itemSize: 15,
+                          itemPadding: EdgeInsets.symmetric(horizontal: 5),
+                          itemBuilder: (context, _) => Icon(Icons.star,
+                          color: Colors.red,
+                          ),
+                          onRatingUpdate: (index) {},
+                          ),
+                          Text(
+                            "\$10",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        
+                      ],
+                    ),
                   ),
                 ),
                   Padding(
@@ -383,10 +397,14 @@ class NewestItemsWidget extends StatelessWidget{
                                 color: Colors.red,
                                 size: 26,
                               ),
-                              Icon(
-                                CupertinoIcons.cart,
+                              IconButton(
+                                icon: new Icon(CupertinoIcons.cart),
                                 color: Colors.red,
-                                size: 26,
+                                
+                                iconSize: 26,
+                              onPressed: () => setState(() {
+                                opacity = 1;
+                             }),
                               ),
                             ],
                             ),
@@ -425,7 +443,7 @@ class NewestItemsWidget extends StatelessWidget{
                     ),
                 ),
                 Container(
-                  width: 150,
+                  width: 140,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -479,14 +497,17 @@ class NewestItemsWidget extends StatelessWidget{
                                 color: Colors.red,
                                 size: 26,
                               ),
-                              Icon(
-                                CupertinoIcons.cart,
+                              IconButton(
+                                icon: new Icon(CupertinoIcons.cart),
                                 color: Colors.red,
-                                size: 26,
+                                onPressed: (){},
+                                iconSize: 26,
+
                               ),
                             ],
                             ),
                             ),
+                            
                             
               ],
             ),

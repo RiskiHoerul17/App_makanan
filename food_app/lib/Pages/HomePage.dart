@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../Widget/AppBarWidget.dart';
 import '../Widget/CategoriesWidget.dart';
+import '../Widget/DrawerWidget.dart';
 import '../Widget/NewestItemsWidget.dart';
 import '../Widget/PopularItemsWidget.dart';
 
@@ -110,10 +111,29 @@ class HomePage extends StatelessWidget{
               ),
 
               // Newest Items Widget
-              NewestItemsWidget(),
-
+              HomeScreen(),
         ],
-      )
+      ),
+      drawer: DrawerWidget(),
+      floatingActionButton: Container(
+        decoration: 
+        BoxDecoration(borderRadius: BorderRadius.circular(20),boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 20,
+              offset: Offset(0, 3),
+            ),
+          ]),
+          child: FloatingActionButton(
+            onPressed: () {},
+            child: Icon(CupertinoIcons.cart, 
+            size: 28,
+            color: Colors.red,
+            ),
+            backgroundColor: Colors.white,
+            ),
+      ),
     );
   }
 }
